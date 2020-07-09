@@ -132,7 +132,6 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
 
     let batch;
     const handlePredict = () => {
-        console.log(isUploaded);
         let fileInput = []; //This will contain the elements of a user-uploaded input file. 
         let indexes = []; //This array will contain the position of non-zero columns in the input file.
         if (isUploaded === true) {
@@ -218,8 +217,6 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
             }
             dataY[i].push(parseFloat(datapts[i][response]));    
         }
-        console.log(dataX);
-        console.log(dataY);
         let output = [];
         let model;
         //Different regression occurs based on the response variable.
@@ -272,12 +269,10 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
                     }
                 } /*If a variable in the input file has only zeroes, then that variable will not be 
                 included in the model prediction. */
-                console.log(filePredict);
                 for (let i = 0; i < filePredict.length; ++i) {
                     let predict = regress.predict(filePredict[i]);
                     output.push(predict);
                 }
-                console.log(output);
                 let map_key = 0;
                 batch = output.map((i, ind) => (<div key = {map_key}><label key = {++map_key} > {map_key}: {i} </label></div>));
                 /* This map displays the batch prediction along with numbers that identify the predictions from the input
@@ -317,12 +312,9 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
                 datapts2}, {type: "line", name: "Predicted", showInLegend: true, markersize: 30, dataPoints: datapts3}]
                 }; //This is information for the graph.
             }
-            console.log("second y: " + y);
             if (y === 1) {
-                console.log("Hi");
                 setGraph(<CanvasJSChart options = {specs}/>);
             } else {
-                console.log("Bye");
                 setGraph();
             }
         } // If there's only one predictor, display the graph.
@@ -358,7 +350,6 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
                         filePredict[i].push(fileInput[i][indexes[j]]);
                     }
                 }
-                console.log(filePredict);
                 let fileInput1 = new Matrix(filePredict);
                 output = logist.predict(fileInput1);
                 let map_key = 0;
