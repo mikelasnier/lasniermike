@@ -6,17 +6,14 @@
   - Copyright (c) 2014-2016, Jon Schlinkert
   - Copyright (c) 2017 ml.js
   - Copyright (c) 2020 ml.js
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,12 +30,9 @@ and https://github.com/mljs/logistic-regression.*/
 
 /* NOTES: The modeling code is not a permanent fixture of this file. It served to test the 
 interface's capabilities. Some things to note about the interface:
-
 1) If you select and then de-select an input file without replacing it, you will eventually get an error.
 This can be avoided by refreshing the page. 
-
 2) Do not leave an input field blank. Put a 0 in the field instead.
-
 3) There is code here for testing purposes that involves training models and working with
 data. It will be commented out for now.
 */ 
@@ -397,9 +391,24 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
                 <input type = "file"  onChange = {handleChangeA}/>
                 <button> Submit </button>
             </form>
+            <form onSubmit = {handleSubmit2}>
+                <label htmlFor = "fileSelection"> Select file. </label>
+                <input type = "file"  onChange = {handleChange}/>
+                <button> Submit </button>
+            </form>
         <div style = {{paddingTop: "15px"}}>
             <div id = "third">
                 <div>
+                    <ul>
+                        <li><label> Choose a response variable. </label>
+                        <input id = "response" value = {response} onChange = {handleResponse}/>
+                        <button id = "Done" onClick = {Load}> Done </button></li>
+                        <li><label> Choose regression type </label>
+                        <select id = "reg_type" > 
+                            <option value = "Linear"> Linear </option>
+                            <option value = "Logistic"> Logistic </option>
+                        </select></li>
+                    </ul>
                     <ul>
                         <li><label> {inputName1} </label> 
                         <input id = "e1" type = "text" value = {input1} onChange = {handleChange1}/></li>
@@ -429,7 +438,6 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
                 <input type = "file"  onChange = {handleChange}/>
                 <button> Submit </button>
             </form>;
-
 (2) let leftover_specifications (= <ul>
                         <li><label> Choose a response variable. </label>
                         <input id = "response" value = {response} onChange = {handleResponse}/>
@@ -440,7 +448,6 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
                             <option value = "Logistic"> Logistic </option>
                         </select></li>
                     </ul>;
-
 (3) let leftover_inputs = <li><label> {inputName7}</label> 
 <input id = "e7" type = "text" value = {input7} onChange = {handleChange1}/></li>
 <li><label> {inputName8} </label> 
@@ -450,8 +457,6 @@ const FileData = () => { //This code sets state for controlled-yet-varying aspec
 <li><label> {inputName10} </label> 
 <input id = "e10" type = "text" value = {input10} onChange = {handleChange1}/></li>
 <li> <button onClick = {handlePredict}> Predict </button></li>
-
-
 These are parts that will be kept for record but are not likely to be used in the final app version. */
 
 export default FileData;
